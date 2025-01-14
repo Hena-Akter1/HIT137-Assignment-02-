@@ -37,6 +37,28 @@ def calculate_monthly_and_seasonal_averages(df):
     monthly_avg.to_csv('monthly_averages.csv', header=['Average Temperature'])
     seasonal_avg.to_csv('average_temp.txt', header=['Average Temperature'])
 
+ # Combine all monthly data into a single DataFrame for range calculations
+def find_extreme_temperatures(df):
+   
+    monthly_columns = ['January', 'February', 'March', 'April', 'May', 'June', 
+      'July', 'August', 'September', 'October', 'November', 'December']
+    df['Max Temperature'] = df[monthly_columns].max(axis=1)
+    df['Min Temperature'] = df[monthly_columns].min(axis=1)
+    df['Temperature Range'] = df['Max Temperature'] - df['Min Temperature']
+    
+    # Find the station with the largest temperature range & the warmest and coolest stations based on average annual temperature
+    max_range_station = df[df['Temperature Range'] == df['Temperature Range'].max()]
+    max_range_station[['STATION_NAME', 'Temperature Range']].to_csv('largest_temp_range_station.txt', index=False)
+
+    df['Average Annual Temperature'] = df[monthly_columns].mean(axis=1)
+    warmest_station = df[df['Average Annual Temperature'] == df['Average Annual Temperature'].max()]
+    coolest_station = df[df['Average Annual Temperature'] == df['Average Annual Temperature'].min()]
+    extremes = pd.DataFrame({
+        'Warmest Station': warmest_station['STATION_NAME'].values,
+        'Coolest Station': coolest_station['STATION_NAME'].values
+    })
+    extremes.to_csv('warmest_and_coolest_station.txt', index=False)
+
 def main():
     folder_path = r"C:/Users/User/Downloads/HIT137 Assignment 2 SS 2024/temperature_data"
     df = load_data(folder_path)
@@ -45,5 +67,5 @@ def main():
     find_extreme_temperatures(df)
     print("Analysis completed. Results are saved to files.")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
