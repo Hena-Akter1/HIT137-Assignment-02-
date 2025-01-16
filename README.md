@@ -12,7 +12,7 @@ This repository contains the solutions for the HIT137 Group Assignment 2. The as
 1. In the root directory place the raw_text.txt file.
 2. Run the Question-01.py script.
 3. Encrypted text will be saved in encrypted_text.txt.
-4. Decrypted text will be saved in decrypted_text.txt.
+4. Decrypted text will be show in output.
 5. On the console, you can see the Decryption verification.
 
 ### Question 2: Calculate average temperature and find largest, warmest and coolest station
@@ -32,6 +32,6 @@ This repository contains the solutions for the HIT137 Group Assignment 2. The as
 
 ## Contributions
 - *Question 1 : Implemented by Simran & Rahim.
-- *Question 2 : Implemented by Tania & Hena.
-- *Question 3 : Implemented by Hena & Tania.
+- *Question 2 : Implemented by Taniya & Hena.
+- *Question 3 : Implemented by Hena & Taniya.
 - *README file: Created, added test cases, and ensured proper repository by All the group members. And uploaded by Rahim.
